@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "525526048606",
+    "firebase_url": "https://donorkuy-636a1.firebaseio.com",
+    "project_id": "donorkuy-636a1",
+    "storage_bucket": "donorkuy-636a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525526048606:android:4f9dd84c47dd9195",
+        "android_client_info": {
+          "package_name": "com.example.axce.donorkuy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525526048606-blsd1p6cm5gv21tobupj1lvlials5djd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm2TwbMyg4WrMQYxba8uPlGnXoKT5QUZo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

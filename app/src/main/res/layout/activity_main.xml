@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.example.axce.donorkuy.Activity.MainActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:translationY="106sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/frame1"
+                    android:layout_width="match_parent"
+                    android:layout_height="105sp"
+                    android:elevation="10dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20sp"
+                        android:src="@drawable/profile" />
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="20sp"
+                        android:layout_toRightOf="@id/profile"
+                        android:text="User Name"
+                        android:layout_marginLeft="10sp"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/biodata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/username"
+                        android:layout_toRightOf="@id/profile"
+                        android:layout_marginLeft="10sp"
+                        android:text="Bio" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/biodata"
+                        android:layout_toRightOf="@id/profile"
+                        android:layout_marginLeft="10sp">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageButton
+                                android:id="@+id/coins"
+                                android:layout_width="24sp"
+                                android:layout_height="24sp"
+                                android:src="@drawable/award"
+                                android:background="@android:color/transparent"/>
+
+                            <TextView
+                                android:id="@+id/coin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@id/coins"
+                                android:text="0" />
+                        </RelativeLayout>
+                    </FrameLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="350sp"
+                    android:layout_height="2sp"
+                    android:layout_gravity="center"
+                    android:background="@color/line" />
+
+                <RelativeLayout
+                    android:id="@+id/frame2"
+                    android:layout_width="match_parent"
+                    android:layout_height="105sp"
+                    android:elevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/profile2"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20sp"
+                        android:src="@drawable/location" />
+
+                    <TextView
+                        android:id="@+id/username2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="20sp"
+                        android:layout_toRightOf="@id/profile2"
+                        android:text="Nama Tempat"
+                        android:layout_marginLeft="10sp"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/biodata2"
+                        android:layout_marginLeft="10sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/username2"
+                        android:layout_toRightOf="@id/profile2"
+                        android:text="Location" />
+
+                    <ImageButton
+                        android:id="@+id/button_direct"
+                        android:layout_width="36sp"
+                        android:layout_height="36sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginRight="20sp"
+                        android:src="@drawable/direct"
+                        android:background="@android:color/transparent"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
+
+
+</LinearLayout>
