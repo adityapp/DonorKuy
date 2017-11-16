@@ -7,7 +7,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -19,15 +23,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Activity.BerkahActivity" />
-        <activity android:name=".Activity.ProfileActivity" />
+        <activity android:name=".Activity.RegistActivity" />
         <activity android:name=".Activity.MainActivity" />
 
         <meta-data
@@ -35,7 +33,18 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAm2TwbMyg4WrMQYxba8uPlGnXoKT5QUZo"/>
+            android:value="AIzaSyAm2TwbMyg4WrMQYxba8uPlGnXoKT5QUZo" />
+
+        <activity
+            android:name=".Activity.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.SakuActivity"></activity>
     </application>
 
 </manifest>

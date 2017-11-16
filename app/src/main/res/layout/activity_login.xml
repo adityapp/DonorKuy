@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/login_logo"
-        android:layout_width="160sp"
-        android:layout_height="160sp"
+        android:layout_width="140sp"
+        android:layout_height="140sp"
         android:layout_marginTop="48sp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/apps_logo" />
@@ -33,6 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/login_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100sp">
+        android:layout_marginTop="150sp">
     </com.google.android.gms.common.SignInButton>
 </RelativeLayout>

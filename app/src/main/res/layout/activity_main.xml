@@ -43,7 +43,7 @@
                         android:layout_height="72dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20sp"
-                        android:src="@drawable/profile" />
+                        android:src="@android:color/white" />
 
                     <TextView
                         android:id="@+id/username"
@@ -52,7 +52,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="20sp"
                         android:layout_toRightOf="@id/profile"
-                        android:text="User Name"
+                        android:text=""
                         android:layout_marginLeft="10sp"
                         android:textSize="18dp" />
 
@@ -63,7 +63,7 @@
                         android:layout_below="@id/username"
                         android:layout_toRightOf="@id/profile"
                         android:layout_marginLeft="10sp"
-                        android:text="Bio" />
+                        android:text="" />
 
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
 
                 <View
                     android:layout_width="350sp"
-                    android:layout_height="2sp"
+                    android:layout_height="1.5sp"
                     android:layout_gravity="center"
                     android:background="@color/line" />
 
@@ -115,7 +115,7 @@
                         android:src="@drawable/location" />
 
                     <TextView
-                        android:id="@+id/username2"
+                        android:id="@+id/locationName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
@@ -126,11 +126,11 @@
                         android:textSize="18dp" />
 
                     <TextView
-                        android:id="@+id/biodata2"
+                        android:id="@+id/urgency"
                         android:layout_marginLeft="10sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/username2"
+                        android:layout_below="@id/locationName"
                         android:layout_toRightOf="@id/profile2"
                         android:text="Location" />
 

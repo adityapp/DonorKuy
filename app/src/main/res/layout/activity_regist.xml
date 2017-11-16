@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.axce.donorkuy.Profile">
+    android:background="@android:color/white"
+    tools:context="com.example.axce.donorkuy.Activity.RegistActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,26 +34,36 @@
                         android:src="@drawable/profile" />
 
                     <TextView
-                        android:id="@+id/profile_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="20sp"
-                        android:layout_toRightOf="@+id/profil_image"
-                        android:text="Nama Pengguna"
-                        android:textSize="24dp" />
-
-                    <TextView
                         android:id="@+id/profile_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/profile_username"
                         android:layout_marginLeft="10sp"
+                        android:layout_marginTop="40sp"
                         android:layout_toRightOf="@id/profil_image"
                         android:text="E-Mail"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        android:lines="1"
+                        android:ellipsize="end"/>
                 </RelativeLayout>
             </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24sp"
+                android:layout_marginTop="20sp"
+                android:text="Nama"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/input_nama"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginLeft="24sp"
+                android:layout_marginRight="24sp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/textinputborder"
+                android:paddingLeft="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,33 +73,19 @@
                 android:text="TTL"
                 android:textSize="18dp" />
 
-            <EditText
-                android:id="@+id/input_ttl"
+            <Button
+                android:id="@+id/pick_date"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="38dp"
                 android:layout_marginLeft="24sp"
                 android:layout_marginRight="24sp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/textinputborder"
-                android:paddingLeft="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24sp"
                 android:layout_marginTop="20sp"
-                android:text="Alamat"
-                android:textSize="18dp" />
-
-            <EditText
-                android:id="@+id/input_alamat"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginLeft="24sp"
-                android:layout_marginRight="24sp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/textinputborder"
-                android:paddingLeft="10dp" />
+                android:background="#f48fb1"
+                android:textSize="18dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="DD / MM / YYYY"
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -106,6 +103,7 @@
                 android:layout_marginRight="24sp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/textinputborder"
+                android:inputType="phone"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -117,6 +115,7 @@
                 android:textSize="18dp" />
 
             <RadioGroup
+                android:id="@+id/radio_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24sp"
@@ -127,45 +126,44 @@
                     android:id="@+id/radio_ab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="AB"
                     android:buttonTint="@android:color/darker_gray"
+                    android:text="AB"
                     android:textColor="@android:color/darker_gray"/>
+
                 <RadioButton
                     android:id="@+id/radio_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="A"
-                    android:layout_marginLeft="28sp"
+                    android:layout_marginLeft="20sp"
                     android:buttonTint="@android:color/darker_gray"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:text="A"
+                    android:textColor="@android:color/darker_gray" />
+
                 <RadioButton
                     android:id="@+id/radio_b"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="B"
-                    android:layout_marginLeft="28sp"
+                    android:layout_marginLeft="20sp"
                     android:buttonTint="@android:color/darker_gray"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:text="B"
+                    android:textColor="@android:color/darker_gray" />
+
                 <RadioButton
                     android:id="@+id/radio_o"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="O"
-                    android:layout_marginLeft="28sp"
+                    android:layout_marginLeft="20sp"
                     android:buttonTint="@android:color/darker_gray"
+                    android:text="0"
                     android:textColor="@android:color/darker_gray"/>
+
                 <RadioButton
                     android:id="@+id/radio_non"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="-"
-                    android:layout_marginLeft="28sp"
+                    android:layout_marginLeft="20sp"
                     android:buttonTint="@android:color/darker_gray"
+                    android:text="-"
                     android:textColor="@android:color/darker_gray"/>
 
             </RadioGroup>
@@ -174,15 +172,15 @@
                 android:id="@+id/profile_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="36sp"
+                android:layout_marginRight="24sp"
+                android:layout_marginTop="36sp"
+                android:background="@color/colorAccent"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:background="@color/colorAccent"
-                android:textColor="@android:color/white"
-                android:text="REGISTER"
-                android:layout_gravity="right"
-                android:layout_marginTop="36sp"
-                android:layout_marginRight="24sp"
-                android:layout_marginBottom="36sp"/>
+                android:text="SAVE"
+                android:textColor="@android:color/white" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

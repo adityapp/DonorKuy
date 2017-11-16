@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.axce.donorkuy.Berkah">
+    tools:context="com.example.axce.donorkuy.Activity.BerkahActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,8 +15,9 @@
 
         <ImageButton
             android:id="@+id/berkah_coins"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="3sp"
             android:background="@android:color/transparent"
             android:src="@drawable/award48" />
 
@@ -27,7 +28,23 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/berkah_coins"
             android:text="0"
-            android:textSize="36dp" />
+            android:textSize="28dp" />
+
+        <View
+            android:layout_width="1.5dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="70sp"
+            android:background="@color/line" />
+
+        <ImageButton
+            android:id="@+id/berkah_basket"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10sp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/basket" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
