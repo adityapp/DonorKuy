@@ -16,10 +16,14 @@ public class RumahSakit {
     private String alamat;
     private String noTlp;
     private String urgency;
-    private String id;
+    private String id, url;
 
     public String getId() {
         return id;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public String getNama() {

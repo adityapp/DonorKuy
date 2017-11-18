@@ -3,13 +3,12 @@ package com.example.axce.donorkuy.Model;
 import java.util.List;
 
 /**
- * Created by AXCE on 11/11/2017.
+ * Created by AXCE on 17/11/2017.
  */
 
-public class Berkah {
+public class Basket {
 
-    private String nama, url;
-    private List<String> codeQR;
+    private String nama, url, codeQR;
     private int harga;
 
     public String getUrl() {
@@ -32,7 +31,7 @@ public class Berkah {
         this.harga = harga;
     }
 
-    public List<String> getCodeQR() {
+    public String getCodeQR() {
         return codeQR;
     }
 }

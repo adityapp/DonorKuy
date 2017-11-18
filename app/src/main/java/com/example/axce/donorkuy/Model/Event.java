@@ -11,12 +11,16 @@ import java.util.Date;
 
 public class Event {
 
-    private String alamat, deskripsi, jamKerja, nama, id;
+    private String alamat, deskripsi, jamKerja, nama, id,url;
     private GeoPoint location;
     private Date waktuMulai, waktuSelesai;
 
     public String getId() {
         return id;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public String getAlamat() {

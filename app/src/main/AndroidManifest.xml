@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.BerkahActivity" />
         <activity android:name=".Activity.RegistActivity" />
         <activity android:name=".Activity.MainActivity" />
@@ -44,7 +44,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.SakuActivity"></activity>
+        <activity android:name=".Activity.SakuActivity" />
+        <activity android:name=".Activity.QrActivity"></activity>
     </application>
 
 </manifest>

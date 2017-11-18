@@ -12,9 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.axce.donorkuy.Activity.BerkahActivity;
-import com.example.axce.donorkuy.Activity.MainActivity;
-import com.example.axce.donorkuy.Barang;
-import com.example.axce.donorkuy.Model.Berkah;
+import com.example.axce.donorkuy.Model.Barang;
 import com.example.axce.donorkuy.R;
 
 import java.util.ArrayList;

@@ -43,7 +43,7 @@
                         android:layout_height="72dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20sp"
-                        android:src="@android:color/white" />
+                        android:src="@android:color/white"/>
 
                     <TextView
                         android:id="@+id/username"
@@ -56,23 +56,16 @@
                         android:layout_marginLeft="10sp"
                         android:textSize="18dp" />
 
-                    <TextView
-                        android:id="@+id/biodata"
+                    <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/username"
                         android:layout_toRightOf="@id/profile"
                         android:layout_marginLeft="10sp"
-                        android:text="" />
-
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/biodata"
-                        android:layout_toRightOf="@id/profile"
-                        android:layout_marginLeft="10sp">
+                        android:layout_marginTop="10sp">
 
                         <RelativeLayout
+                            android:id="@+id/coin_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -126,7 +119,7 @@
                         android:textSize="18dp" />
 
                     <TextView
-                        android:id="@+id/urgency"
+                        android:id="@+id/alamat"
                         android:layout_marginLeft="10sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

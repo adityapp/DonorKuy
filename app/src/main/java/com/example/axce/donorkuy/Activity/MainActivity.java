@@ -1,6 +1,7 @@
 package com.example.axce.donorkuy.Activity;
 
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
@@ -53,6 +55,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -62,10 +65,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-    private ImageButton direct, coins;
-    private ImageView profile;
+    private ImageButton direct;
+    private RelativeLayout coins;
+    private ImageView profile, imageLocation;
     private CardView cardView;
-    private TextView locationName, urgency, userName, koin;
+    private TextView locationName, alamat, userName, koin;
     private MapFragment mMapFragment;
     private FusedLocationProviderClient lastKnownLocation;
     private GoogleApiClient googleApiClient;
@@ -86,46 +90,39 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_main);
         cardView = (CardView) findViewById(R.id.card_view);
         direct = (ImageButton) findViewById(R.id.button_direct);
-        coins = (ImageButton) findViewById(R.id.coins);
+        coins = findViewById(R.id.coin_btn);
         locationName = (TextView) findViewById(R.id.locationName);
-        urgency = (TextView) findViewById(R.id.urgency);
+        alamat = (TextView) findViewById(R.id.alamat);
         userName = (TextView) findViewById(R.id.username);
         profile = (ImageView) findViewById(R.id.profile);
         koin = (TextView) findViewById(R.id.coin);
         mAuth = FirebaseAuth.getInstance();
         rSakit = new ArrayList<>();
         dbEvent = new ArrayList<>();
+        imageLocation = findViewById(R.id.profile2);
 
-        //Firestore realtime
-        db.collection("User").whereEqualTo("id", mAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        profile.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w("error", "listen:error", e);
-                    return;
-                }
-                for (DocumentChange document : documentSnapshots.getDocumentChanges()) {
-                    user = document.getDocument().toObject(User.class);
-                    switch (document.getType()) {
-                        case ADDED:
-                            userName.setText(user.getNama());
-                            koin.setText(String.valueOf(user.getKoin()));
-                            Glide.with(MainActivity.this).load(user.getUrl()).into(profile);
-                            break;
-                        case MODIFIED:
-                            userName.setText(user.getNama());
-                            koin.setText(String.valueOf(user.getKoin()));
-                            Glide.with(MainActivity.this).load(user.getUrl()).into(profile);
-                            break;
-                        case REMOVED:
-                            userName.setText(user.getNama());
-                            koin.setText(String.valueOf(user.getKoin()));
-                            Glide.with(MainActivity.this).load(user.getUrl()).into(profile);
-                            break;
-                    }
-                }
+            public boolean onLongClick(View v) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                dialogBuilder.setTitle("Log Out")
+                        .setMessage("Anda yakin untuk Log Out?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mAuth.signOut();
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).setNegativeButton("No", null);
+                dialogBuilder.show();
+                return true;
             }
         });
+
+        //Firestore realtime
+        dbUser();
 
         mMapFragment = MapFragment.newInstance();
         mMapFragment.getMapAsync(this);
@@ -164,6 +161,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onMapReady(final GoogleMap googleMap) {
         gMap = googleMap;
         db.collection("RumahSakit").addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -183,23 +185,23 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        db.collection("Event").whereGreaterThanOrEqualTo("waktuSelesai",Calendar.getInstance().getTime())
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w("error", "listen:error", e);
-                    return;
-                }
-                for (DocumentChange document : documentSnapshots.getDocumentChanges()) {
-                    Event event = document.getDocument().toObject(Event.class);
-                    googleMap.addMarker(new MarkerOptions().position(new LatLng(event.getLocation().getLatitude(), event.getLocation().getLongitude()))
-                            .title(event.getNama()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.event)));
-                    dbEvent.add(event);
-                    size++;
-                }
-            }
-        });
+        db.collection("Event").whereGreaterThanOrEqualTo("waktuSelesai", Calendar.getInstance().getTime())
+                .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w("error", "listen:error", e);
+                            return;
+                        }
+                        for (DocumentChange document : documentSnapshots.getDocumentChanges()) {
+                            Event event = document.getDocument().toObject(Event.class);
+                            googleMap.addMarker(new MarkerOptions().position(new LatLng(event.getLocation().getLatitude(), event.getLocation().getLongitude()))
+                                    .title(event.getNama()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.event)));
+                            dbEvent.add(event);
+                            size++;
+                        }
+                    }
+                });
 
         //set Marker RS - Event
         gMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -216,19 +218,53 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         updateLastLocation();
     }
 
+    private void dbUser() {
+        db.collection("User").whereEqualTo("id", mAuth.getCurrentUser().getUid()).addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("error", "listen:error", e);
+                    return;
+                }
+                for (DocumentChange document : documentSnapshots.getDocumentChanges()) {
+                    user = document.getDocument().toObject(User.class);
+                    switch (document.getType()) {
+                        case ADDED:
+                            userName.setText(user.getNama());
+                            koin.setText(String.valueOf(user.getKoin()));
+                            Glide.with(MainActivity.this).load(user.getUrl()).into(profile);
+                            break;
+                        case MODIFIED:
+                            userName.setText(user.getNama());
+                            koin.setText(String.valueOf(user.getKoin()));
+                            Glide.with(MainActivity.this).load(user.getUrl()).into(profile);
+                            break;
+                        case REMOVED:
+                            userName.setText(user.getNama());
+                            koin.setText(String.valueOf(user.getKoin()));
+                            Glide.with(MainActivity.this).load(user.getUrl()).into(profile);
+                            break;
+                    }
+                }
+            }
+        });
+    }
+
     private boolean cari(String marker) {
         boolean b = false;
         for (int i = 0; i < size; i++) {
             if (rSakit.size() != 0 && rSakit.get(i).getNama().equals(marker)) {
                 b = true;
                 locationName.setText(rSakit.get(i).getNama());
-                urgency.setText(rSakit.get(i).getUrgency());
+                alamat.setText(rSakit.get(i).getAlamat());
+                Glide.with(MainActivity.this).load(rSakit.get(i).getUrl()).into(imageLocation);
                 markerSelect = rSakit.get(i).getLocation();
                 break;
             } else if (dbEvent.size() != 0 && dbEvent.get(i).getNama().equals(marker)) {
                 b = true;
                 locationName.setText(dbEvent.get(i).getNama());
-                urgency.setText(dbEvent.get(i).getDeskripsi());
+                alamat.setText(dbEvent.get(i).getAlamat());
+                Glide.with(MainActivity.this).load(dbEvent.get(i).getUrl()).into(imageLocation);
                 markerSelect = dbEvent.get(i).getLocation();
                 break;
             } else {
@@ -292,5 +328,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        dbUser();
     }
 }
